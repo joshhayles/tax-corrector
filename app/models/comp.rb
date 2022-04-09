@@ -1,0 +1,3 @@
+class Comp < ApplicationRecord
+    
+end
