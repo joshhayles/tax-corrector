@@ -26,7 +26,7 @@ function Copyright({props}) {
   );
 }
 
-export default function SignUp({onLogin}) {
+export default function SignUp({onLogin, setShowLogin}) {
 
 const [username, setUsername] = useState("")
 const [password, setPassword] = useState("")
@@ -39,8 +39,6 @@ const [errors, setErrors] = useState([])
       username,
       password
     }
-
-    const data = new FormData(event.currentTarget);
     
     fetch('/signup', {
       method: "POST",
@@ -122,6 +120,11 @@ const [errors, setErrors] = useState([])
               <Grid item xs>
                 <Link href="#" variant="body2">
                   Forgot password?
+                </Link>
+              </Grid>
+              <Grid item>
+                <Link onClick={() => setShowLogin(true)} variant="body2">
+                  {"Already have an account? Log In"}
                 </Link>
               </Grid>
             </Grid>

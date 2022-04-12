@@ -1,6 +1,10 @@
 class UsersController < ApplicationController
 skip_before_action :authorize, only: :create
     
+    def index 
+        render json: @current_user
+    end
+
     def create 
         #debugger
         user = User.create!(user_params)
@@ -15,7 +19,7 @@ skip_before_action :authorize, only: :create
     private
 
     def user_params
-        params.permit(:username, :password, :password_confirmation)
+        params.permit(:username, :password)
     end
 
 end

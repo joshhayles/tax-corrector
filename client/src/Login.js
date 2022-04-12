@@ -10,7 +10,6 @@ import Box from '@mui/material/Box';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import {useState} from 'react'
-//import Welcome from './Welcome'
 
 
 function Copyright({props}) {
@@ -27,7 +26,7 @@ function Copyright({props}) {
   );
 }
 
-export default function Login({onLogin}) {
+export default function Login({onLogin, setShowLogin}) {
 
 const [username, setUsername] = useState("")
 const [password, setPassword] = useState("")
@@ -40,8 +39,6 @@ const [errors, setErrors] = useState([])
       username,
       password
     }
-
-    const data = new FormData(event.currentTarget);
     
     fetch('/login', {
       method: "POST",
@@ -59,7 +56,6 @@ const [errors, setErrors] = useState([])
     })
   }  
  
-  //user ? <Welcome /> : <Login onLogin={setUser}/>
 
   return (
     <>
@@ -128,7 +124,7 @@ const [errors, setErrors] = useState([])
                 </Link>
               </Grid>
               <Grid item>
-                <Link href="#" variant="body2">
+                <Link onClick={() => setShowLogin(false)} variant="body2">
                   {"Don't have an account? Sign Up"}
                 </Link>
               </Grid>

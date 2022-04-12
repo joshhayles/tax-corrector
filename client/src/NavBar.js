@@ -12,12 +12,10 @@ import FormGroup from '@mui/material/FormGroup';
 import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
 import Login from './Login'
-import {useHistory} from 'react-router-dom'
 
 export default function NavBar({user, setUser}) {
   const [auth, setAuth] = React.useState(true);
   const [anchorEl, setAnchorEl] = React.useState(null);
-  const history = useHistory()
   
   const handleChange = (event) => {
     setAuth(event.target.checked);
@@ -27,7 +25,6 @@ export default function NavBar({user, setUser}) {
       if (r.ok) {
         setAuth(null)
         setUser(null)
-        // history.push("/")
       }
     })
   };
@@ -100,7 +97,7 @@ export default function NavBar({user, setUser}) {
                 onClose={handleClose}
               >
                 <MenuItem onClick={handleClose}>Profile</MenuItem>
-                <MenuItem onClick={handleClose}>My account</MenuItem>
+                <MenuItem onClick={handleClose}>My Account</MenuItem>
               </Menu>
             </div>
           )}
