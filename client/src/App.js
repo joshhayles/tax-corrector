@@ -7,6 +7,7 @@ import Auth from './Auth'
 import Dashboard from './Dashboard'
 import ReactDOM from 'react-dom'
 import {BrowserRouter, Route, useHistory, Switch} from 'react-router-dom'
+import MyComps from './MyComps'
 
 function App() {
   const [user, setUser] = useState(null)
@@ -38,9 +39,9 @@ function App() {
           <Dashboard onLogin={setUser} />
         </Route> 
 
-        {/* <Route exact path='/' >
-          <Login onLogin={setUser} /> 
-        </Route> */}
+        <Route exact path='/mycomps' >
+          <MyComps onLogin={setUser} /> 
+        </Route> 
       
         </Switch>
 

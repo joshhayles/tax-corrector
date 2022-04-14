@@ -97,7 +97,7 @@ export default function NavBar({user, setUser}) {
                 onClose={handleClose}
               >
                 <MenuItem onClick={handleClose}>Profile</MenuItem>
-                <MenuItem onClick={handleClose}>My Account</MenuItem>
+                <MenuItem onClick={handleClose}>My COMPS</MenuItem>
               </Menu>
             </div>
           )}

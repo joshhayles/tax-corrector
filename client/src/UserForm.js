@@ -8,7 +8,7 @@ import FormControl from '@mui/material/FormControl'
 import InputLabel from '@mui/material/InputLabel'
 import OutlinedInput from '@mui/material/OutlinedInput'
 import InputAdornment from '@mui/material/InputAdornment'
-
+import UserHouseCard from './UserHouseCard'
 
 const yearBuiltData = [
   {
@@ -27,7 +27,8 @@ const squareFeetData = [
   ]
 
 
-export default function UserForm() {
+export default function UserForm({user, comps, handleUserSubmit, handleShowComps}) {
+  console.log(handleUserSubmit)
   const [yearBuilt, setYearBuilt] = useState("")
   const [squareFeet, setSquareFeet] = useState("")
   const [proposedValue, setProposedValue] = useState("")
@@ -40,8 +41,14 @@ export default function UserForm() {
     setSquareFeet(event.target.value)
   }
 
+  const handleProposedValue = (event) => {
+    setProposedValue(event.target.value)
+  }
+
   return (
+    
     <Box
+      onSubmit={handleUserSubmit}
       component="form"
       sx={{
         '& .MuiTextField-root': { m: 1, width: '45ch' },
@@ -80,13 +87,12 @@ export default function UserForm() {
           ))}
         </TextField>
 
-
         <FormControl fullWidth sx={{ m: 1 }}>
           <InputLabel htmlFor="outlined-adornment-amount">Proposed Value</InputLabel>
           <OutlinedInput
             id="outlined-adornment-amount"
-            //value={proposedValue}
-            // onChange={handleChange('amount')}
+            value={proposedValue}
+            onChange={handleProposedValue}
             startAdornment={<InputAdornment position="start">$</InputAdornment>}
             label="Proposed Amount"
           />
@@ -94,8 +100,10 @@ export default function UserForm() {
 
       </div>
 
-      <Button />
-      
+      <Button handleShowComps={handleShowComps}/>
+      {/* <button>Show COMPS</button> */}
+
     </Box>
+    
   );
 }
