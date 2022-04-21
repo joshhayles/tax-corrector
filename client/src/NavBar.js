@@ -12,10 +12,12 @@ import FormGroup from '@mui/material/FormGroup';
 import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
 import Login from './Login'
+import { useHistory} from 'react-router-dom'
 
 export default function NavBar({user, setUser}) {
   const [auth, setAuth] = React.useState(true);
   const [anchorEl, setAnchorEl] = React.useState(null);
+  let history = useHistory()
   
   const handleChange = (event) => {
     setAuth(event.target.checked);
@@ -40,6 +42,18 @@ export default function NavBar({user, setUser}) {
   const handleClose = () => {
     setAnchorEl(null);
   };
+
+  function handleDashboardLink() {
+    history.push("/dashboard")
+    setAnchorEl(null)
+  }
+
+  function handleMyCompsLink() {
+    // console.log("CLICKED!")
+    history.push("/mycomps")
+    setAnchorEl(null)
+  }
+
 
   return (
     <Box sx={{ flexGrow: 1 }}>
@@ -96,8 +110,8 @@ export default function NavBar({user, setUser}) {
                 open={Boolean(anchorEl)}
                 onClose={handleClose}
               >
-                <MenuItem onClick={handleClose}>Profile</MenuItem>
-                <MenuItem onClick={handleClose}>My COMPS</MenuItem>
+                <MenuItem onClick={handleDashboardLink}>Dashboard</MenuItem>
+                <MenuItem onClick={handleMyCompsLink}>My COMPS</MenuItem>
               </Menu>
             </div>
           )}

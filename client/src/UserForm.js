@@ -8,7 +8,7 @@ import FormControl from '@mui/material/FormControl'
 import InputLabel from '@mui/material/InputLabel'
 import OutlinedInput from '@mui/material/OutlinedInput'
 import InputAdornment from '@mui/material/InputAdornment'
-import UserHouseCard from './UserHouseCard'
+
 
 const yearBuiltData = [
   {
@@ -28,7 +28,7 @@ const squareFeetData = [
 
 
 export default function UserForm({user, comps, handleUserSubmit, handleShowComps}) {
-  console.log(handleUserSubmit)
+ 
   const [yearBuilt, setYearBuilt] = useState("")
   const [squareFeet, setSquareFeet] = useState("")
   const [proposedValue, setProposedValue] = useState("")
@@ -101,7 +101,6 @@ export default function UserForm({user, comps, handleUserSubmit, handleShowComps
       </div>
 
       <Button handleShowComps={handleShowComps}/>
-      {/* <button>Show COMPS</button> */}
 
     </Box>
     

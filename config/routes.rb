@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :favorites
   resources :homes
   resources :comps 
   resources :users
@@ -8,5 +9,6 @@ Rails.application.routes.draw do
   get '/me', to: 'users#show'
   get '/dashboard', to: 'users#index'
   delete '/logout', to: 'sessions#destroy'
+  #delete '/favorites', to: 'favorites#destroy'
 
 end

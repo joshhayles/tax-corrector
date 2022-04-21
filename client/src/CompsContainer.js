@@ -9,6 +9,7 @@ function CompsContainer({user, comps}) {
             comp={comp}
             key={comp.id}
             user={user}
+       
             /> )}
         </>
     )

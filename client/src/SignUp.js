@@ -10,7 +10,7 @@ import Box from '@mui/material/Box';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import {useState} from 'react'
-
+import { useHistory } from 'react-router-dom'
 
 function Copyright({props}) {
 
@@ -31,6 +31,7 @@ export default function SignUp({onLogin, setShowLogin}) {
 const [username, setUsername] = useState("")
 const [password, setPassword] = useState("")
 const [errors, setErrors] = useState([])
+let history = useHistory()
   
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -50,6 +51,7 @@ const [errors, setErrors] = useState([])
     .then((r) => {
       if (r.ok) {
         r.json().then((user) => onLogin(user))
+        history.push("/dashboard")
       } else {
         r.json().then((err) => setErrors(err.errors))
       }

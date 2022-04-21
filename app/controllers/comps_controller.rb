@@ -7,9 +7,9 @@ end
 
 #get /comps/:id
 def show 
-    home = Comp.find_by(id: params[:id])
-        if comp
-            render json: comp
+    home = Comp.find_by(id: params[:comp_id])
+        if home
+            render json: home
         else
             render json: { error: "COMP not found" }, status: :not_found 
         end

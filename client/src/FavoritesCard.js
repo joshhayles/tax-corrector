@@ -14,7 +14,7 @@ import FavoriteIcon from "@mui/icons-material/Favorite";
 import ShareIcon from "@mui/icons-material/Share";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
-import { useState } from "react";
+import { useState } from 'react'
 import Box from '@mui/material/Box'
 
 const ExpandMore = styled((props) => {
@@ -28,38 +28,33 @@ const ExpandMore = styled((props) => {
   }),
 }));
 
-export default function CompsCard({ user, comp }) {
+export default function FavoritesCard({ user, favoriteId, setFavorites }) {
   const [expanded, setExpanded] = React.useState(false);
-  const [isLiked, setIsLiked] = useState(false);
+  const [hideCard, setHideCard] = useState(false);
 
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
 
-  function handleFavoriteClick() {
-    setIsLiked(!isLiked);
-    //console.log(!isLiked)
+  function handleUnfavoriteClick() {
+    // setHideCard(!hideCard)
+    // console.log(hideCard)
 
-    fetch("/favorites", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-      },
-      body: JSON.stringify({
-        comp_id: comp.id,
-        user_id: user.id
-      }),
-    }).then((r) => r.json())
-      .then((data) => {
-        setIsLiked(data)
+    fetch(`/favorites/${favoriteId}`, {
+      method: "DELETE",
+    })
+      .then(() => {
+        setFavorites((currentFavorites) => {
+          return currentFavorites.filter((e) => e.id !== favoriteId)
+        })
       })
-    
   }
+
+  // if (hideCard) return null 
 
   return (
     <Box m={2} pt={3} >
-    <Card sx={{ maxWidth: 400 }}>
+    <Card sx={{ maxWidth: 410 }}>
       <CardHeader
         avatar={
           <Avatar sx={{ bgcolor: red[400] }} aria-label="recipe">
@@ -72,7 +67,7 @@ export default function CompsCard({ user, comp }) {
           </IconButton>
         }
         title={user.username}
-        subheader={comp.year_built}
+        subheader={user.year_built}
       />
       <CardMedia
         component="img"
@@ -87,21 +82,24 @@ export default function CompsCard({ user, comp }) {
           mussels, if you like.
         </Typography>
       </CardContent>
-      
+
       <CardActions disableSpacing>
-        
-        <IconButton onClick={handleFavoriteClick} aria-label="add to favorites">
-          {isLiked ? (
-            <FavoriteIcon sx={{ color: red[700] }} />
-          ) : (
+        {/* <IconButton onClick={handleUnfavoriteClick} aria-label="add to favorites">
+          {hideCard ? (
             <FavoriteIcon sx={{ color: red[100] }} />
+          ) : (
+            <FavoriteIcon sx={{ color: red[700] }} />
           )}
+        </IconButton> */}
+
+        <IconButton onClick={handleUnfavoriteClick} aria-label="add to favorites">
+            <FavoriteIcon sx={{ color: red[700] }} />
+          
         </IconButton>
 
         <IconButton aria-label="share">
           <ShareIcon />
         </IconButton>
-
         <ExpandMore
           expand={expanded}
           onClick={handleExpandClick}
@@ -111,7 +109,6 @@ export default function CompsCard({ user, comp }) {
           <ExpandMoreIcon />
         </ExpandMore>
       </CardActions>
-
       <Collapse in={expanded} timeout="auto" unmountOnExit>
         <CardContent>
           <Typography paragraph>Method:</Typography>
