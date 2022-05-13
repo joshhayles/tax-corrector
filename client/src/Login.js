@@ -41,7 +41,7 @@ let history = useHistory()
       username,
       password
     }
-    
+
     fetch('/login', {
       method: "POST",
       headers: {
@@ -60,7 +60,6 @@ let history = useHistory()
       }
     })
   }  
- 
 
   return (
     <>
