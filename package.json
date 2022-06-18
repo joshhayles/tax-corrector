@@ -1,5 +1,8 @@
 {
   "devDependencies": {
     "cypress": "^9.7.0"
+  },
+  "dependencies": {
+    "express": "^4.18.1"
   }
 }
