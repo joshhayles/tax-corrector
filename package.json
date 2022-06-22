@@ -1,8 +1,13 @@
 {
+  "scripts": {
+    "devStart": "nodemon server.js"
+  },
   "devDependencies": {
-    "cypress": "^9.7.0"
+    "cypress": "^9.7.0",
+    "nodemon": "^2.0.16"
   },
   "dependencies": {
+    "bcrypt": "^5.0.1",
     "express": "^4.18.1"
   }
 }
