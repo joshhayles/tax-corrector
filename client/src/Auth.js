@@ -7,7 +7,6 @@ function Auth({onLogin}) {
 
 const [showLogin, setShowLogin] = useState(true)
 
-
     return (
         <div id="auth">
             { showLogin ? (
