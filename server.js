@@ -15,8 +15,8 @@ const db = mongoose.connection
 db.on('error', error => console.log(error))
 db.once('open', () => console.log('connected to mongoose!'))
 
-app.set('views', __dirname + '/views')
-app.use(express.static('public'))
+// app.set('views', __dirname + '/views')
+// app.use(express.static('public'))
 app.use('/', indexRouter)
 
 // set up routes in routes folder
