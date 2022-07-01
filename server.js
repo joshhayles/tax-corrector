@@ -1,17 +1,25 @@
+if (process.env.NODE_ENV !== 'production') {
+    require('dotenv').config()
+}
+
 const express = require('express');
 const app = express();
 const bcrypt = require('bcrypt');
 const users = []
-
-app.set('views', __dirname + '/client')
-app.use(express.json());
-
-// set up a route
-
-app.get('/', (req, res) => {
-    //res.render('test.ejs')
-    res.send({ hello: 'Your express backend is connected to react!'})
+const indexRouter = require('./routes/index')
+const mongoose = require('mongoose')
+mongoose.connect(process.env.DATABASE_URL, {
+    useNewUrlParser: true
 })
+const db = mongoose.connection 
+db.on('error', error => console.log(error))
+db.once('open', () => console.log('connected to mongoose!'))
+
+app.set('views', __dirname + '/views')
+app.use(express.static('public'))
+app.use('/', indexRouter)
+
+// set up routes in routes folder
 
 // app.get('/users', (req, res) => {
 //     res.json(users)
@@ -70,4 +78,4 @@ app.get('/', (req, res) => {
 //     console.log(users)
 // })
 
-app.listen(4000);
+app.listen(process.env.PORT || 4000)
