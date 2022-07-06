@@ -2,11 +2,11 @@ GET http://localhost:4000/users
 
 ###
 
-POST http://localhost:4000/users
+POST http://localhost:4000/signup
 Content-Type: application/json
 
 {
-    "name": "Joshua",
+    "username": "Joshua",
     "password": "password"
 }
 

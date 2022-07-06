@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react'
+import React, { useEffect, useState } from 'react'
 import './App.css';
 import NavBar from './NavBar'
 import Auth from './Auth'
@@ -27,6 +27,7 @@ function App() {
       <header className="App-header">
       </header>
         <NavBar user={user} setUser={setUser} />
+
         <Switch>
 
         <Route exact path='/dashboard' >

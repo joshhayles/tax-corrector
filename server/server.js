@@ -19,7 +19,7 @@ app.use('/', routesUrls)
 // app.use(bodyParser.urlencoded({ extended: false }));
 // app.use(bodyParser.json);
 
-// dotevn config
+// dotenv config
 dotenv.config()
 
 // mongoose connection
